@@ -1,7 +1,7 @@
 pragma solidity ^0.5.0;
 
-import "./RWD";
-import "./Tether";
+import "./RWD.sol";
+import "./Tether.sol";
 
 contract DecentralBank {
     string public name = "Decentral Bank";

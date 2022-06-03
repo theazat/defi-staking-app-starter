@@ -12,7 +12,7 @@ module.exports = async function(deployer, network, accounts) {
   const rwd = await RWD.deployed();
 
   // Deploy DecentralBank contract
-  await deployer.deploy(DecentralBank);
+  await deployer.deploy(DecentralBank, rwd.address, tether.address);
   const decentralBank = DecentralBank.deployed();
 
   // Transfer all RWD tokens to Decentral Bank
