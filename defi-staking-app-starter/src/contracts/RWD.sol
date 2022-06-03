@@ -1,9 +1,9 @@
 pragma solidity ^0.5.0;
 
-contract Tether {
-    string public name = "Mosk Tether Token";
-    string public symbol = "mUSDT";
-    uint256 public totalSupply = 1000000000000000000000000;
+contract RWD {
+    string public name = "Reward Token";
+    string public symbol = "RWD";
+    uint256 public totalSupply = 1000000000000000000000000; // 1 million tokens
     uint8 public decimals = 18;
 
     // indexed allows us to filter through the address
