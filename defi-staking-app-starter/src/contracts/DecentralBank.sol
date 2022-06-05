@@ -13,7 +13,7 @@ contract DecentralBank {
 
     mapping(address => uint256) public stakingBalance;
     mapping(address => bool) public hasStaked;
-    mapping(address => bool) public isStaked;
+    mapping(address => bool) public isStaking;
 
     constructor(RWD _rwd, Tether _tether) public {
         rwd = _rwd;
@@ -30,12 +30,12 @@ contract DecentralBank {
         // Update Staking Balance
         stakingBalance[msg.sender] = stakingBalance[msg.sender] + _amount;
 
-        if (!hasStaked) {
-            stakers.push[msg.sender];
+        if (!hasStaked[msg.sender]) {
+            stakers.push(msg.sender);
         }
 
         // Update Staking Balance
-        isStaked[msg.sender] = true;
+        isStaking[msg.sender] = true;
         hasStaked[msg.sender] = true;
     }
 }
