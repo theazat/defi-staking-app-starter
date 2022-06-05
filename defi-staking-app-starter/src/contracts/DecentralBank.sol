@@ -22,10 +22,20 @@ contract DecentralBank {
 
     // staking function
     function depositToken(uint256 _amount) public {
+        require(_amount > 0, "amount cannot be 0");
+
         // Transfer tether tokens to this contract address for staking
         tether.transferFrom(msg.sender, address(this), _amount);
 
-        // Uodate Staking Balance
+        // Update Staking Balance
         stakingBalance[msg.sender] = stakingBalance[msg.sender] + _amount;
+
+        if (!hasStaked) {
+            stakers.push[msg.sender];
+        }
+
+        // Update Staking Balance
+        isStaked[msg.sender] = true;
+        hasStaked[msg.sender] = true;
     }
 }
