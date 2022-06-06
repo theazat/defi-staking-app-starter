@@ -1,7 +1,7 @@
 import React from "react";
 import bank from "../bank.png";
 
-const Navbar = ({ props }) => {
+const Navbar = ({ account }) => {
   return (
     <nav
       className="navbar navbar-dark fixed-top shadow p-0"
@@ -23,7 +23,7 @@ const Navbar = ({ props }) => {
 
       <ul className="navbar-nav px-3">
         <li className="text-nowrap d-none nav-item d-sm-none d-sm-block">
-          <small style={{ color: "white" }}> ACCOUNT NUMBER:</small>
+          <small style={{ color: "white" }}> ACCOUNT NUMBER: {account}</small>
         </li>
       </ul>
     </nav>

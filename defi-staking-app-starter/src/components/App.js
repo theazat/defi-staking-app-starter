@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import Web3 from "web3";
 
 const App = () => {
+  const [account, setAccount] = useState("");
   const [balance, setBalance] = useState("0");
 
   const loadWeb3 = useCallback(async () => {
@@ -20,7 +21,8 @@ const App = () => {
   const loadBlockchainData = useCallback(async () => {
     const web3 = window.web3;
     const account = await web3.eth.getAccounts();
-    console.log(account);
+    setAccount(account[0]);
+    console.log(account[0]);
   });
 
   useEffect(() => {
@@ -30,7 +32,7 @@ const App = () => {
 
   return (
     <div>
-      <Navbar />
+      <Navbar account={account} />
       <div className="text-center">
         <h1>Hello World </h1>
       </div>
