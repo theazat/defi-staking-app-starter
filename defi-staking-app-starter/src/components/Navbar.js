@@ -1,7 +1,7 @@
 import React from "react";
 import bank from "../bank.png";
 
-const Navbar = () => {
+const Navbar = ({ props }) => {
   return (
     <nav
       className="navbar navbar-dark fixed-top shadow p-0"
@@ -16,7 +16,7 @@ const Navbar = () => {
           width="50"
           height="30"
           className="d-inline-block align-top"
-          alt="bank image"
+          alt="bank"
         />
         &nbsp; DAPP Yield Staking (Decentralized Banking)
       </a>
