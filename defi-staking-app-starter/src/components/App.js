@@ -31,6 +31,7 @@ const App = () => {
 
   const loadBlockchainData = async () => {
     try {
+      setLoading(false);
       const web3 = window.web3;
       const accounts = await web3.eth.getAccounts();
       const localAccount = accounts[0];
@@ -98,6 +99,17 @@ const App = () => {
     loadBlockchainData();
   }, []);
 
+  let content;
+
+  {
+    loading
+      ? (content = (
+          <p id="loader" className="text-center" style={{ margin: "30px" }}>
+            LOADING PLEASE..
+          </p>
+        ))
+      : (content = <Main />);
+  }
   return (
     <div>
       <Navbar account={account} />
@@ -108,9 +120,7 @@ const App = () => {
             className="col-lg-12 ml-auto mr-auto"
             style={{ maxWidth: "600px", minHeight: "100vm" }}
           >
-            <div>
-              <Main />
-            </div>
+            <div>{content}</div>
           </main>
         </div>
       </div>
