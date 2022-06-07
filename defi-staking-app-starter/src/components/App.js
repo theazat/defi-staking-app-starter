@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import Navbar from "./Navbar";
+import Main from "./Main";
 import Web3 from "web3";
 import Tether from "../truffle_abis/Tether.json";
 import RWD from "../truffle_abis/RWD.json";
@@ -33,7 +34,8 @@ const App = () => {
       const web3 = window.web3;
       const accounts = await web3.eth.getAccounts();
       const localAccount = accounts[0];
-      setAccount(accounts[0]);
+
+      setAccount(simplifyAccount(accounts[0]));
       const netWorkId = await web3.eth.net.getId();
 
       // Load Tether Contract
@@ -82,6 +84,15 @@ const App = () => {
     }
   };
 
+  function simplifyAccount(account) {
+    // 0x45Ba10d457dd4e7E2f29DC390E534c6200D593a0
+    const firstFour = account.slice(0, 4);
+    const lastFour = account.substr(account.length - 4);
+
+    // 0x45.....93a0
+    return firstFour + "....." + lastFour;
+  }
+
   useEffect(() => {
     loadWeb3();
     loadBlockchainData();
@@ -90,8 +101,18 @@ const App = () => {
   return (
     <div>
       <Navbar account={account} />
-      <div className="text-center">
-        <h1>Hello World </h1>
+      <div className="container-fluid mt-5">
+        <div className="row">
+          <main
+            role="main"
+            className="col-lg-12 ml-auto mr-auto"
+            style={{ maxWidth: "600px", minHeight: "100vm" }}
+          >
+            <div>
+              <Main />
+            </div>
+          </main>
+        </div>
       </div>
     </div>
   );
