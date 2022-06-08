@@ -108,7 +108,13 @@ const App = () => {
             LOADING PLEASE..
           </p>
         ))
-      : (content = <Main />);
+      : (content = (
+          <Main
+            tetherBalance={tetherBalance}
+            rwdBalance={rwdBalance}
+            stakingBalance={stakingBalance}
+          />
+        ));
   }
   return (
     <div>
