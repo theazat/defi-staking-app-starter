@@ -6,7 +6,6 @@ import Web3 from "web3";
 import Tether from "../truffle_abis/Tether.json";
 import RWD from "../truffle_abis/RWD.json";
 import DecentralBank from "../truffle_abis/DecentralBank.json";
-import ParticleSettings from "./ParticleSettings";
 
 const App = () => {
   const [account, setAccount] = useState("");
@@ -150,10 +149,6 @@ const App = () => {
   }
   return (
     <div className="App" style={{ position: "relative" }}>
-      <div style={{ position: "absolute" }}>
-        <ParticleSettings />
-      </div>
-
       <Navbar account={simplifyAccount(account)} />
       <div className="container-fluid mt-5">
         <div className="row">
