@@ -31,12 +31,11 @@ const App = () => {
 
   const loadBlockchainData = async () => {
     try {
-      setLoading(false);
       const web3 = window.web3;
       const accounts = await web3.eth.getAccounts();
       const localAccount = accounts[0];
 
-      setAccount(simplifyAccount(accounts[0]));
+      setAccount(accounts[0]);
       const netWorkId = await web3.eth.net.getId();
 
       // Load Tether Contract
@@ -83,7 +82,37 @@ const App = () => {
     } catch (error) {
       console.error("Something went wrong! " + error);
     }
+    setLoading(false);
   };
+
+  // staking function
+  function stakeTokens(amount) {
+    setLoading(true);
+    console.log("TWSST: " + decentralBank._address);
+    console.log("TWSST: " + account);
+    tether.methods
+      .approve(decentralBank._address, amount)
+      .send({ from: account })
+      .on("transactionHash", (hash) => {
+        decentralBank.methods
+          .depositToken(amount)
+          .send({ from: account })
+          .on("transactionHash", (hash) => {
+            setLoading(false);
+          });
+      });
+  }
+
+  // unstaking functions
+  function unstakeTokens() {
+    setLoading(true);
+    decentralBank.methods
+      .unstakeTokens()
+      .send({ from: account })
+      .on("transactionHash", (hash) => {
+        setLoading(false);
+      });
+  }
 
   function simplifyAccount(account) {
     // 0x45Ba10d457dd4e7E2f29DC390E534c6200D593a0
@@ -113,6 +142,7 @@ const App = () => {
             tetherBalance={tetherBalance}
             rwdBalance={rwdBalance}
             stakingBalance={stakingBalance}
+            stakeTokens={stakeTokens}
           />
         ));
   }

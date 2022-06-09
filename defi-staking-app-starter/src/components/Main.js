@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import tether from "../tether.png";
 
-const Main = ({ tetherBalance, rwdBalance, stakingBalance }) => {
+const Main = ({ tetherBalance, rwdBalance, stakingBalance, stakeTokens }) => {
+  const [amount, setAmount] = useState("");
   return (
     <div id="content" className="mt-3">
       <table className="table text-muted text-center">
@@ -19,7 +20,15 @@ const Main = ({ tetherBalance, rwdBalance, stakingBalance }) => {
         </tbody>
       </table>
       <div className="card mb-2" style={{ opacity: "9" }}>
-        <form className="mb-3">
+        <form
+          onChange={(e) => {
+            let amount;
+            amount = e.target.value;
+            amount = window.web3.utils.toWei(amount, "Ether");
+            setAmount(amount);
+          }}
+          className="mb-3"
+        >
           <div style={{ bordeSpacing: "0 1em" }}>
             <label className="float-left" style={{ marginLeft: "15px" }}>
               <b>Stake Tokens</b>
@@ -36,7 +45,13 @@ const Main = ({ tetherBalance, rwdBalance, stakingBalance }) => {
                 </div>
               </div>
             </div>
-            <button type="submit" className="btn btn-primary btn-lg btn-block">
+            <button
+              type="submit"
+              className="btn btn-primary btn-lg btn-block"
+              onClick={() => {
+                stakeTokens(amount);
+              }}
+            >
               DEPOSIT
             </button>
           </div>
