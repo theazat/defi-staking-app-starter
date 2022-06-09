@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import tether from "../tether.png";
 
-const Main = ({ tetherBalance, rwdBalance, stakingBalance, stakeTokens }) => {
+const Main = ({
+  tetherBalance,
+  rwdBalance,
+  stakingBalance,
+  stakeTokens,
+  unstakeTokens,
+}) => {
   const [amount, setAmount] = useState("");
   return (
     <div id="content" className="mt-3">
@@ -56,7 +62,15 @@ const Main = ({ tetherBalance, rwdBalance, stakingBalance, stakeTokens }) => {
             </button>
           </div>
         </form>
-        <button className="btn btn-primary btn-lg btn-block">WITHDRAW</button>
+        <button
+          type="submit"
+          className="btn btn-primary btn-lg btn-block"
+          onClick={() => {
+            unstakeTokens();
+          }}
+        >
+          WITHDRAW
+        </button>
         <div className="card-body text-center" style={{ color: "blue" }}>
           AIRDROP
         </div>

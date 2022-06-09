@@ -143,12 +143,13 @@ const App = () => {
             rwdBalance={rwdBalance}
             stakingBalance={stakingBalance}
             stakeTokens={stakeTokens}
+            unstakeTokens={unstakeTokens}
           />
         ));
   }
   return (
     <div>
-      <Navbar account={account} />
+      <Navbar account={simplifyAccount(account)} />
       <div className="container-fluid mt-5">
         <div className="row">
           <main
