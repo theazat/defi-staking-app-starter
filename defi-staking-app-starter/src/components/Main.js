@@ -71,9 +71,6 @@ const Main = ({
         >
           WITHDRAW
         </button>
-        <div className="card-body text-center" style={{ color: "blue" }}>
-          AIRDROP
-        </div>
       </div>
     </div>
   );
